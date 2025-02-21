@@ -24,7 +24,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path="/not-found" element={<NotFound />} />
         <Route element={<PrivateRoute />}>
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/chat/:id?" element={<Chat />} />
         </Route>
         <Route path="*" element={<Navigate to='/not-found' />} />
       </Routes>
