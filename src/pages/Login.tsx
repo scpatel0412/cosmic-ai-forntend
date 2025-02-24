@@ -1,45 +1,41 @@
-import React from 'react'
-import Common from './Common'
+import Common from "./Common";
 import { Formik, Field, Form } from "formik";
-import { Link, useNavigate } from 'react-router-dom';
-import { logValidationSchema } from '../features/validation'
-import { loginUserApi } from '../features/api';
-import { LoginUser } from '../features/interface';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
+import { Link, useNavigate } from "react-router-dom";
+import { logValidationSchema } from "../features/validation";
+import { loginUserApi } from "../features/api";
+import { LoginUser } from "../features/interface";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 function Login() {
     const queryClient = useQueryClient();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const { mutate, isError, error } = useMutation<any, Error, LoginUser>({
         mutationFn: loginUserApi,
         onSuccess: (data: any, variables, context: any) => {
-            console.log('Login successful', data);
+            console.log("Login successful", data);
             if (data) {
-                localStorage.setItem('token', data.access_token)
-                toast.success(`login successful`)
-                navigate('/chat')
+                localStorage.setItem("token", data.access_token);
+                toast.success(`login successful`);
+                navigate("/chat");
                 // context.resetForm();
             }
             // Optionally invalidate queries if needed
-            queryClient.invalidateQueries({ queryKey: ['users'] });
+            queryClient.invalidateQueries({ queryKey: ["users"] });
         },
         onError: (err: Error, variables, context: any) => {
-            console.error('Login error', err);
-            toast.error(err.message)
+            console.error("Login error", err);
+            toast.error(err.message);
             // context.resetForm();
-        }
-    }
-    );
+        },
+    });
 
     function LoginSubmit(values: LoginUser, { resetForm }: any) {
-
         try {
-            mutate({ email: values.email, password: values.password })
+            mutate({ email: values.email, password: values.password });
         } catch (err) {
-            console.log(error, err)
+            console.log(error, err);
         }
-
     }
 
     return (
@@ -55,14 +51,17 @@ function Login() {
                                 initialValues={{ email: "", password: "", remember: false }}
                                 validationSchema={logValidationSchema}
                                 onSubmit={async (values, actions) => {
-                                    await LoginSubmit(values, actions)
-                                    actions.resetForm()
+                                    await LoginSubmit(values, actions);
+                                    actions.resetForm();
                                 }}
                             >
                                 {({ errors, touched, resetForm }) => (
                                     <Form className="space-y-4 md:space-y-6">
                                         <div>
-                                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            <label
+                                                htmlFor="email"
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                            >
                                                 Your email
                                             </label>
                                             <Field
@@ -72,12 +71,17 @@ function Login() {
                                                 placeholder="name@company.com"
                                             />
                                             {errors.email && touched.email && (
-                                                <div className="text-red-500 text-sm">{errors.email}</div>
+                                                <div className="text-red-500 text-sm">
+                                                    {errors.email}
+                                                </div>
                                             )}
                                         </div>
 
                                         <div>
-                                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            <label
+                                                htmlFor="password"
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                            >
                                                 Password
                                             </label>
                                             <Field
@@ -87,7 +91,9 @@ function Login() {
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             />
                                             {errors.password && touched.password && (
-                                                <div className="text-red-500 text-sm">{errors.password}</div>
+                                                <div className="text-red-500 text-sm">
+                                                    {errors.password}
+                                                </div>
                                             )}
                                         </div>
 
@@ -102,7 +108,10 @@ function Login() {
                                                     />
                                                 </div>
                                                 <div className="ml-3 text-sm">
-                                                    <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">
+                                                    <label
+                                                        htmlFor="remember"
+                                                        className="text-gray-500 dark:text-gray-300"
+                                                    >
                                                         Remember me
                                                     </label>
                                                 </div>
@@ -110,7 +119,10 @@ function Login() {
                                         </div>
 
                                         <div>
-                                            <Link to="/forget" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
+                                            <Link
+                                                to="/forget"
+                                                className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                                            >
                                                 Forgot password?
                                             </Link>
                                             <button
@@ -121,7 +133,10 @@ function Login() {
                                             </button>
                                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                                 Don’t have an account yet?{" "}
-                                                <Link to="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                                                <Link
+                                                    to="/register"
+                                                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                                                >
                                                     Sign up
                                                 </Link>
                                             </p>
@@ -159,7 +174,7 @@ function Login() {
                 </div>
             </section>
         </Common>
-    )
+    );
 }
 
-export default Login
+export default Login;
