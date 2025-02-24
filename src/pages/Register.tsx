@@ -31,7 +31,7 @@ function Register() {
                                     actions.resetForm();
                                 }}
                             >
-                                {({ handleSubmit, errors, touched, resetForm }) => (
+                                {({ handleSubmit}) => (
                                     <Form
                                         className="space-y-4 md:space-y-6"
                                         onSubmit={handleSubmit}

@@ -47,11 +47,11 @@ function Sidenav({ conv_data }: SideNavInterface) {
                         <img
                             src='https://unsplash.com/photos/ggcEFpKzflQ/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzQwMzgyNjA0fA&force=true&w=640'
                             alt="Profile Avatar"
-                            className="w-16 h-20"
+                            className="w-16 h-20 rounded-xl object-cover"
                         />
                         <div className="ml-3">
                             <p className="text-sm font-semibold text-gray-900 dark:text-white">
-                              Ana de Armas  
+                                Ana de Armas
                             </p>
                         </div>
                     </div>

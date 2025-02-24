@@ -10,9 +10,9 @@ import { toast } from "react-toastify";
 function Login() {
     const queryClient = useQueryClient();
     const navigate = useNavigate();
-    const { mutate, isError, error } = useMutation<any, Error, LoginUser>({
+    const { mutate, error } = useMutation<any, Error, LoginUser>({
         mutationFn: loginUserApi,
-        onSuccess: (data: any, variables, context: any) => {
+        onSuccess: (data: any) => {
             console.log("Login successful", data);
             if (data) {
                 localStorage.setItem("token", data.access_token);
@@ -23,14 +23,14 @@ function Login() {
             // Optionally invalidate queries if needed
             queryClient.invalidateQueries({ queryKey: ["users"] });
         },
-        onError: (err: Error, variables, context: any) => {
+        onError: (err: Error) => {
             console.error("Login error", err);
             toast.error(err.message);
             // context.resetForm();
         },
     });
 
-    function LoginSubmit(values: LoginUser, { resetForm }: any) {
+    function LoginSubmit(values: LoginUser) {
         try {
             mutate({ email: values.email, password: values.password });
         } catch (err) {
@@ -51,11 +51,11 @@ function Login() {
                                 initialValues={{ email: "", password: "", remember: false }}
                                 validationSchema={logValidationSchema}
                                 onSubmit={async (values, actions) => {
-                                    await LoginSubmit(values, actions);
+                                    await LoginSubmit(values);
                                     actions.resetForm();
                                 }}
                             >
-                                {({ errors, touched, resetForm }) => (
+                                {({ errors, touched }) => (
                                     <Form className="space-y-4 md:space-y-6">
                                         <div>
                                             <label

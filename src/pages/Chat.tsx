@@ -20,7 +20,6 @@ function Chat() {
 
     const {
         data: conv_data,
-        error: convError,
         isError: conIsError,
         isLoading: conisLoading,
         refetch: convRefetch,
@@ -31,16 +30,13 @@ function Chat() {
 
     const {
         data: chat_data,
-        error: chatError,
-        isError: chatIsError,
-        isLoading: chatisLoading,
         refetch,
     } = useQuery({
         queryKey: ["chat"],
         queryFn: () => conversationChatApi(id ? parseInt(id) : null),
     });
 
-    const { mutate, isError: createisError } = useMutation({
+    const { mutate } = useMutation({
         mutationFn: conversationCreateApi,
         onSuccess: (data: any) => {
             convRefetch();
@@ -48,9 +44,9 @@ function Chat() {
         },
     });
 
-    const { mutate: chatMutate, isError: chatisError } = useMutation({
+    const { mutate: chatMutate } = useMutation({
         mutationFn: chatCreateApi,
-        onSuccess: (data: any) => {
+        onSuccess: () => {
             refetch();
             setLoadingButton(false)
             setQuestionText("");

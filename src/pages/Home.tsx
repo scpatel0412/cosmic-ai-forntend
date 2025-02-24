@@ -3,7 +3,7 @@ import Common from "./Common";
 function Home() {
     return (
         <Common>
-            <header className="p-8 bg-white dark:bg-gray-900">
+            <header className="min-h-screen p-8 bg-white dark:bg-gray-900">
                 <div className="container pt-12 pb-6 mx-auto text-center w-w-full lg:pb-20">
                     <h1 className="block antialiased tracking-normal font-sans font-semibold text-blue-gray-900 !lg:leading-tight mx-auto mb-6 w-full text-3xl !leading-snug lg:max-w-3xl lg:text-5xl">
                         Home Page
@@ -40,9 +40,9 @@ function Home() {
                 </div>
                 <div className="w-full lg:container lg:mx-auto">
                     <img
-                        src="https://bucket.material-tailwind.com/magic-ai/3582b3d039594149b4ad1a6fc541adc400f4e198f04d847dca914a1f1d4de3c7.jpg"
+                        src="https://unsplash.com/photos/8Gl7Ew-q6D8/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MjN8fG5pZ2h0JTIwYmVhY2h8ZW58MHx8fHwxNzQwMzgzODI0fDA&force=true"
                         alt="credit cards"
-                        className="h-96 w-full rounded-lg object-cover lg:h-[21rem]"
+                        className=" w-full rounded-lg object-cover"
                     />
                 </div>
             </header>
