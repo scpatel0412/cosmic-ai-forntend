@@ -3,10 +3,10 @@ import Common from "./Common";
 function About() {
     return (
         <Common>
-            <section className="bg-white dark:bg-gray-900">
+            <section className="bg-white ">
                 <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-                    <div className="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400">
-                        <h2 className="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">
+                    <div className="max-w-screen-lg text-gray-500 sm:text-lg text-gray-900">
+                        <h2 className="mb-4 text-4xl tracking-tight font-bold text-gray-900">
                             Powering innovation at{" "}
                             <span className="font-extrabold">200,000+</span> companies
                             worldwide
@@ -44,10 +44,10 @@ function About() {
                     </div>
                 </div>
             </section>
-            <section className="bg-white dark:bg-gray-900">
+            <section className="bg-white">
                 <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
-                    <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                        <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                    <div className="font-light text-gray-500 sm:text-lg text-gray-900">
+                        <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">
                             We didn't reinvent the wheel
                         </h2>
                         <p className="mb-4">

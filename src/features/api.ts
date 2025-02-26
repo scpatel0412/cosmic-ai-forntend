@@ -134,7 +134,7 @@ const userProfileApi = async (): Promise<any> => {
     try {
         const response = await axios({
             url: "/users/me",
-            method: "GET",
+            method: "POST",
             data: {},
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -156,4 +156,26 @@ const userProfileApi = async (): Promise<any> => {
     }
 };
 
-export { loginUserApi, userConversationApi, conversationChatApi, conversationCreateApi, chatCreateApi, userProfileApi };
+const stripeProducts = async (): Promise<any> => {
+    try {
+        const response = await axios({
+            url: "/stripe/complete/products",
+            method: "GET",
+        });
+        return response.data;
+    } catch (error: unknown) {
+        if (error instanceof AxiosError) {
+            // Extract error details from AxiosError
+            const errorMessage = error.response?.data?.message || 'An error occurred';
+            const statusCode = error.response?.status || 500;
+            console.error(`Login error with status ${statusCode}:`, errorMessage);
+            throw new Error(`Error ${statusCode}: ${errorMessage}`);
+        } else {
+            // Handle any unknown errors
+            console.error('Unknown error occurred during login');
+            throw new Error('Unknown error occurred during login');
+        }
+    }
+};
+
+export { loginUserApi, userConversationApi, conversationChatApi, conversationCreateApi, chatCreateApi, userProfileApi, stripeProducts };

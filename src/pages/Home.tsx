@@ -3,7 +3,7 @@ import Common from "./Common";
 function Home() {
     return (
         <Common>
-            <header className="min-h-screen p-8 bg-white dark:bg-gray-900">
+            <header className="min-h-screen p-8 bg-white">
                 <div className="container pt-12 pb-6 mx-auto text-center w-w-full lg:pb-20">
                     <h1 className="block antialiased tracking-normal font-sans font-semibold text-blue-gray-900 !lg:leading-tight mx-auto mb-6 w-full text-3xl !leading-snug lg:max-w-3xl lg:text-5xl">
                         Home Page

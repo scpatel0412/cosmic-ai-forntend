@@ -9,6 +9,7 @@ import {
 } from "@/features/api";
 import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
+import Loader from "@/components/Loader";
 
 function Chat() {
     const { id } = useParams();
@@ -92,7 +93,7 @@ function Chat() {
     }
 
     if (conisLoading) {
-        return <div>Loading...</div>;
+        return <Loader />;
     }
 
     if (conIsError) {
